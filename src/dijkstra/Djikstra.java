@@ -28,11 +28,11 @@ public class Djikstra {
 		q = verteces.toArray();
 		dist = new Integer[verteces.size()];
 		prev = new Vertex[verteces.size()];
-		int temp0 = Integer.MAX_VALUE;
 		
 		dist[verteces.indexOf(source)] = 0;
 		
 		while(!verteces.isEmpty()) {
+			int temp0 = Integer.MAX_VALUE;
 			int ver = 0;
 			for (int i = 0; i < dist.length; i++) {
 				if(q[i] != null) {
@@ -43,11 +43,12 @@ public class Djikstra {
 				}
 			}
 			
-			Vertex u = verteces.get(ver);
+			Vertex u = list.get(ver);
 			verteces.remove(u);
 			q[ver] = null;
-
+			System.out.println("Cur: " + u.getName());
 			for (Vertex v : graph.getAdjencencies(u)) {
+				System.out.println("Adj: " + v.getName());
 				int temp = dist[list.indexOf(u)] == null ? 0 : dist[list.indexOf(u)] + graph.getWeight(u, v);
 				if(dist[list.indexOf(v)] == null || temp < dist[list.indexOf(v)]) {
 					dist[list.indexOf(v)] = temp;
